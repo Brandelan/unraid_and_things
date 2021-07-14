@@ -1,2 +1,2 @@
-# unraid_and_things
-Various scripts and tools I use for unraid.
+#Unraid and Things
+A collection of scripts and tools I use on my Unraid server.
