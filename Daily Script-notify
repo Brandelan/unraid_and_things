@@ -1,0 +1,4 @@
+#!/bin/bash
+NOW=$(date "+%m-%d-%Y")
+LOG=$(cat "/boot/logs/Daily-Log.txt" | grep "$(date "+%m-%d-%Y")")
+/usr/local/emhttp/webGui/scripts/notify -s "Daily Log $NOW" -d "Cron task" -m "$LOG"
