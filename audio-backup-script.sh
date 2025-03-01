@@ -5,11 +5,11 @@ start_m=`date +%M`
 start_s=`date +%S`
 now=$(date +"%m_%d_%Y-%H_%M")
 
-LOGFILE="/volume2/backups/docker/syncthing/audio/${now}_Log.txt"
+LOGFILE="/volume1/backups/docker/syncthing/audio/${now}_Log.txt"
 echo "Script start: $start_m:$start_s" >> $LOGFILE 2>%1
 
-source_dir="/volume2/backups/syncthing/audio/"
-backup_dir="/volume2/backups/docker/syncthing/audio"
+source_dir="/volume1/syncthing/audio/"
+backup_dir="/volume1/backups/docker/syncthing/audio"
 num_backups_to_keep=2
 
 # Stop the container
@@ -50,16 +50,17 @@ then
     echo "Compressing and backing up syncthing audio at ${source_dir}" >> $LOGFILE 2>%1
     cd ${source_dir}
     #tar -czf - Application\ Support/ -P | pv -s $(du -sb Application\ Support/ | awk '{print $1}') | gzip > $backup_dir/wiki_backup_$now.tar.gz
-    tar -czf $backup_dir/${now}_syncthing_audio_backup.tar.gz "${source_dir}"
+    #tar -czf $backup_dir/${now}_syncthing_audio_backup.tar.gz "${source_dir}"
+    7z a $backup_dir/${now}_syncthing_audio_backup.7z "${source_dir}" -p"password" -mx=1 -t7z -m0=lzma2 
     echo "Starting syncthing" >> $LOGFILE 2>%1
     docker start syncthing
 fi
 
 # Get the number of files in the backup directory
-num_files=`ls $backup_dir/*_syncthing_audio_backup.tar.gz | wc -l`
+num_files=`ls $backup_dir/*_syncthing_audio_backup.7z | wc -l`
 echo "Number of files in directory: $num_files" >> $LOGFILE 2>%1
 # Get the full path of the oldest file in the directory
-oldest_file=`ls -t $backup_dir/*_syncthing_audio_backup.tar.gz | tail -1`
+oldest_file=`ls -t $backup_dir/*_syncthing_audio_backup.7z | tail -1`
 echo $oldest_file >> $LOGFILE 2>%1
 
 # After the backup, if the number of files is larger than the number of backups we want to keep

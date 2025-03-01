@@ -5,11 +5,11 @@ start_m=`date +%M`
 start_s=`date +%S`
 now=$(date +"%m_%d_%Y-%H_%M")
 
-logfile_dir="/volume2/backups/audio/logs/soundlibrary_rsync"
-LOGFILE="/volume2/backups/audio/logs/soundlibrary_rsync/${now}_Log.txt"
+logfile_dir="/volume1/backups/audio/logs/soundlibrary_rsync"
+LOGFILE="/volume1/backups/audio/logs/soundlibrary_rsync/${now}_Log.txt"
 echo "Script start: $start_m:$start_s" >> $LOGFILE 2>%1
 
-source_dir="/volume2/backups/audio/SoundLibrary/"
+source_dir="/volume1/audio/SoundLibrary/"
 backup_dir="brandelan@10.0.0.95:/home/brandelan/backups/soundlibrary"
 num_backups_to_keep=2
 

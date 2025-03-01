@@ -5,11 +5,11 @@ start_m=`date +%M`
 start_s=`date +%S`
 now=$(date +"%m_%d_%Y-%H_%M")
 
-LOGFILE="/volume2/backups/docker/dokuwiki/${now}_Log.txt"
+LOGFILE="/volume1/backups/docker/dokuwiki/${now}_Log.txt"
 echo "Script start: $start_m:$start_s" >> $LOGFILE 2>%1
 
-wiki_library_dir="/volume2/docker/dokuwiki/dokuwiki/"
-backup_dir="/volume2/backups/docker/dokuwiki"
+wiki_library_dir="/volume1/docker/dokuwiki/dokuwiki/"
+backup_dir="/volume1/backups/docker/dokuwiki"
 num_backups_to_keep=2
 
 # Stop the container

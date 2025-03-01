@@ -5,11 +5,11 @@ start_m=`date +%M`
 start_s=`date +%S`
 now=$(date +"%m_%d_%Y-%H_%M")
 
-LOGFILE="/volume2/backups/docker/plex/${now}_Plex-Log.txt"
+LOGFILE="/volume1/backups/docker/plex/${now}_Plex-Log.txt"
 echo "Script start: $start_m:$start_s" >> $LOGFILE 2>%1
 
-plex_library_dir="/volume2/docker/plex/config/Library/Application Support/Plex Media Server/"
-backup_dir="/volume2/backups/docker/plex"
+plex_library_dir="/volume1/docker/plex/config/Library/Application Support/Plex Media Server/"
+backup_dir="/volume1/backups/docker/plex"
 num_backups_to_keep=2
 
 # Stop the container
